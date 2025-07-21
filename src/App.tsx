@@ -1,34 +1,79 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
+import { useRef } from 'react'
 import './App.css'
+import NameSection from './components/NameSection'
+import BioSection from './components/BioSection'
+import AboutSection from './components/AboutSection'
+import ProjectsSection from './components/ProjectsSection'
+import Footer from './components/Footer'
+import { bioConfig, personalInfo, contactInfo } from './content'
+import type { NameSectionRef } from './components/NameSection'
+import type { BioSectionRef } from './components/BioSection'
+import type { AboutSectionRef } from './components/AboutSection'
+import type { ProjectsSectionRef } from './components/ProjectsSection'
 
 function App() {
-  const [count, setCount] = useState(0)
+  const nameRef = useRef<NameSectionRef>(null)
+  const bioRef = useRef<BioSectionRef>(null)
+  const aboutRef = useRef<AboutSectionRef>(null)
+  const projectsRef = useRef<ProjectsSectionRef>(null)
+
+  // Get content from external file for easier editing
+  const { firstPhrases, secondPhrases } = bioConfig
+
+  // Define your projects data
+  const projects = [
+    {
+      title: "Personal Website",
+      description: "A modern portfolio website built with React and TypeScript featuring text scramble animations",
+      technologies: ["React", "TypeScript", "Tailwind CSS", "Vite"]
+    },
+    {
+      title: "E-commerce Platform", 
+      description: "Full-stack e-commerce solution with payment processing and inventory management",
+      technologies: ["Node.js", "Express", "MongoDB", "Stripe"]
+    },
+    {
+      title: "Task Management App",
+      description: "Collaborative task management application with real-time updates and team features",
+      technologies: ["Python", "Django", "PostgreSQL", "WebSocket"]
+    }
+  ]
 
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
+    <div className="min-h-screen w-full flex flex-col justify-start items-start p-8 max-w-3xl mx-auto bg-neutral-800 font-mono">
+      <NameSection 
+        ref={nameRef}
+        initialText={personalInfo.name}
+        delay={500}
+      />
+      
+      <BioSection 
+        ref={bioRef}
+        firstPhrases={firstPhrases}
+        secondPhrases={secondPhrases}
+        delay={1300}
+        rotationInterval={4000}
+      />
+      
+      <AboutSection 
+        ref={aboutRef}
+        delay={2100}
+      />
+      
+      {/* <ProjectsSection 
+        ref={projectsRef}
+        titleText={personalInfo.projectsTitle}
+        delay={2900}
+        projects={projects}
+      /> */}
+      
+      <Footer
+        githubUrl={contactInfo.github}
+        instagramUrl={contactInfo.instagram}
+        linkedinUrl={contactInfo.linkedin}
+        email={contactInfo.email}
+      />
+    </div>
   )
 }
 
