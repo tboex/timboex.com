@@ -41,6 +41,13 @@ const AboutSection = forwardRef<AboutSectionRef, AboutSectionProps>(({
     }
   }, [text, delay])
 
+  // Separate effect to handle text changes (like language switching)
+  useEffect(() => {
+    if (scrambleRef.current && text) {
+      scrambleRef.current.setText(text)
+    }
+  }, [text])
+
   return (
     <section className="text-left mb-16 max-w-3xl">
       <div className="font-thin text-base text-gray-300 leading-relaxed m-0 min-h-12" ref={aboutRef}></div>

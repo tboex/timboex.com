@@ -1,11 +1,12 @@
-import { useRef } from 'react'
+import { useRef, useState } from 'react'
 import './App.css'
 import NameSection from './components/NameSection'
 import BioSection from './components/BioSection'
 import AboutSection from './components/AboutSection'
 import ProjectsSection from './components/ProjectsSection'
 import Footer from './components/Footer'
-import { bioConfig, personalInfo, contactInfo } from './content'
+import LanguageToggle from './components/LanguageToggle'
+import { getContent, type Language } from './content'
 import type { NameSectionRef } from './components/NameSection'
 import type { BioSectionRef } from './components/BioSection'
 import type { AboutSectionRef } from './components/AboutSection'
@@ -17,8 +18,16 @@ function App() {
   const aboutRef = useRef<AboutSectionRef>(null)
   const projectsRef = useRef<ProjectsSectionRef>(null)
 
+  const [language, setLanguage] = useState<Language>('en')
+  const content = getContent(language)
+  const { bioConfig, personalInfo, contactInfo, aboutText } = content
+
   // Get content from external file for easier editing
   const { firstPhrases, secondPhrases } = bioConfig
+
+  const handleLanguageChange = (newLanguage: Language) => {
+    setLanguage(newLanguage)
+  }
 
   // Define your projects data
   const projects = [
@@ -41,6 +50,11 @@ function App() {
 
   return (
     <div className="min-h-screen w-full flex flex-col justify-start items-start p-8 max-w-3xl mx-auto bg-neutral-800 font-mono">
+      <LanguageToggle 
+        currentLanguage={language}
+        onLanguageChange={handleLanguageChange}
+      />
+      
       <NameSection 
         ref={nameRef}
         initialText={personalInfo.name}
@@ -57,6 +71,7 @@ function App() {
       
       <AboutSection 
         ref={aboutRef}
+        text={aboutText}
         delay={2100}
       />
       
