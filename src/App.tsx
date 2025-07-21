@@ -3,20 +3,17 @@ import './App.css'
 import NameSection from './components/NameSection'
 import BioSection from './components/BioSection'
 import AboutSection from './components/AboutSection'
-import ProjectsSection from './components/ProjectsSection'
 import Footer from './components/Footer'
 import LanguageToggle from './components/LanguageToggle'
 import { getContent, type Language } from './content'
 import type { NameSectionRef } from './components/NameSection'
 import type { BioSectionRef } from './components/BioSection'
 import type { AboutSectionRef } from './components/AboutSection'
-import type { ProjectsSectionRef } from './components/ProjectsSection'
 
 function App() {
   const nameRef = useRef<NameSectionRef>(null)
   const bioRef = useRef<BioSectionRef>(null)
   const aboutRef = useRef<AboutSectionRef>(null)
-  const projectsRef = useRef<ProjectsSectionRef>(null)
 
   const [language, setLanguage] = useState<Language>('en')
   const content = getContent(language)
