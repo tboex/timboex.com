@@ -51,6 +51,7 @@ function App() {
         <LanguageToggle 
           currentLanguage={language}
           onLanguageChange={handleLanguageChange}
+          delay={2800}
         />
         
         <NameSection 
@@ -70,7 +71,7 @@ function App() {
         <AboutSection 
           ref={aboutRef}
           text={aboutText}
-          delay={3000}
+          delay={4100}
         />
         
         {/* <ProjectsSection 

@@ -4,13 +4,16 @@ import type { Language } from '../content'
 interface LanguageToggleProps {
   currentLanguage: Language
   onLanguageChange: (language: Language) => void
+  delay?: number
 }
 
 const LanguageToggle: React.FC<LanguageToggleProps> = ({
   currentLanguage,
-  onLanguageChange
+  onLanguageChange,
+  delay = 3000
 }) => {
   const [isOpen, setIsOpen] = useState(false)
+  const [isVisible, setIsVisible] = useState(false)
   const dropdownRef = useRef<HTMLDivElement>(null)
 
   const languages = [
@@ -43,8 +46,22 @@ const LanguageToggle: React.FC<LanguageToggleProps> = ({
     }
   }, [])
 
+  // Delayed fade-in effect
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setIsVisible(true)
+    }, delay)
+
+    return () => clearTimeout(timer)
+  }, [delay])
+
   return (
-    <div className="fixed top-8 right-8" ref={dropdownRef}>
+    <div 
+      className={`fixed top-8 right-8 transition-opacity duration-1000 ${
+        isVisible ? 'opacity-100' : 'opacity-0 pointer-events-none'
+      }`} 
+      ref={dropdownRef}
+    >
       <button
         onClick={toggleDropdown}
         className="bg-neutral-700 text-gray-50 border border-neutral-600 px-4 py-2 rounded cursor-pointer font-mono text-sm hover:bg-neutral-600 transition-colors duration-200 flex items-center gap-2"
