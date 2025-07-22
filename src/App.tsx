@@ -63,14 +63,14 @@ function App() {
           ref={bioRef}
           firstPhrases={firstPhrases}
           secondPhrases={secondPhrases}
-          delay={1300}
+          delay={2000}
           rotationInterval={4000}
         />
         
         <AboutSection 
           ref={aboutRef}
           text={aboutText}
-          delay={2100}
+          delay={3000}
         />
         
         {/* <ProjectsSection 

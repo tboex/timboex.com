@@ -1,4 +1,4 @@
-import { useEffect, useRef, forwardRef, useImperativeHandle } from 'react'
+import { useEffect, useRef, forwardRef, useImperativeHandle, useState } from 'react'
 import { TextScramble } from '../utils/text-scramble'
 import { aboutText } from '../content'
 
@@ -17,6 +17,7 @@ const AboutSection = forwardRef<AboutSectionRef, AboutSectionProps>(({
 }, ref) => {
   const aboutRef = useRef<HTMLDivElement>(null)
   const scrambleRef = useRef<TextScramble | null>(null)
+  const [hasInitialized, setHasInitialized] = useState(false)
 
   useImperativeHandle(ref, () => ({
     setText: async (newText: string) => {
@@ -34,6 +35,7 @@ const AboutSection = forwardRef<AboutSectionRef, AboutSectionProps>(({
       const timer = setTimeout(async () => {
         if (scrambleRef.current) {
           await scrambleRef.current.setText(text)
+          setHasInitialized(true) // Mark as initialized after first animation
         }
       }, delay)
       
@@ -42,11 +44,12 @@ const AboutSection = forwardRef<AboutSectionRef, AboutSectionProps>(({
   }, [text, delay])
 
   // Separate effect to handle text changes (like language switching)
+  // Only runs after initial animation has completed
   useEffect(() => {
-    if (scrambleRef.current && text) {
+    if (scrambleRef.current && text && hasInitialized) {
       scrambleRef.current.setText(text)
     }
-  }, [text])
+  }, [text, hasInitialized])
 
   return (
     <section className="text-left mb-16 max-w-3xl">
