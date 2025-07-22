@@ -22,7 +22,7 @@ const AboutSection = forwardRef<AboutSectionRef, AboutSectionProps>(({
   useImperativeHandle(ref, () => ({
     setText: async (newText: string) => {
       if (scrambleRef.current) {
-        return scrambleRef.current.setText(newText, { speed: 0.5  })
+        return scrambleRef.current.setText(newText, { speed: 'fast'  })
       }
       return Promise.resolve()
     }
@@ -34,7 +34,7 @@ const AboutSection = forwardRef<AboutSectionRef, AboutSectionProps>(({
       
       const timer = setTimeout(async () => {
         if (scrambleRef.current) {
-          await scrambleRef.current.setText(text, { speed: 0.5  })
+          await scrambleRef.current.setText(text, { speed: 'fast'  })
           setHasInitialized(true)
         }
       }, delay)
