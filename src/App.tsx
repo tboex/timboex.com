@@ -46,38 +46,40 @@ function App() {
   ]
 
   return (
-    <div className="min-h-screen w-full flex flex-col justify-start items-start p-8 max-w-3xl mx-auto bg-neutral-800 font-mono">
-      <LanguageToggle 
-        currentLanguage={language}
-        onLanguageChange={handleLanguageChange}
-      />
-      
-      <NameSection 
-        ref={nameRef}
-        initialText={personalInfo.name}
-        delay={500}
-      />
-      
-      <BioSection 
-        ref={bioRef}
-        firstPhrases={firstPhrases}
-        secondPhrases={secondPhrases}
-        delay={1300}
-        rotationInterval={4000}
-      />
-      
-      <AboutSection 
-        ref={aboutRef}
-        text={aboutText}
-        delay={2100}
-      />
-      
-      {/* <ProjectsSection 
-        ref={projectsRef}
-        titleText={personalInfo.projectsTitle}
-        delay={2900}
-        projects={projects}
-      /> */}
+    <div className="min-h-screen w-full flex flex-col bg-neutral-800 font-input">
+      <div className="flex-1 flex flex-col justify-start items-start p-8 max-w-3xl mx-auto w-full">
+        <LanguageToggle 
+          currentLanguage={language}
+          onLanguageChange={handleLanguageChange}
+        />
+        
+        <NameSection 
+          ref={nameRef}
+          initialText={personalInfo.name}
+          delay={500}
+        />
+        
+        <BioSection 
+          ref={bioRef}
+          firstPhrases={firstPhrases}
+          secondPhrases={secondPhrases}
+          delay={1300}
+          rotationInterval={4000}
+        />
+        
+        <AboutSection 
+          ref={aboutRef}
+          text={aboutText}
+          delay={2100}
+        />
+        
+        {/* <ProjectsSection 
+          ref={projectsRef}
+          titleText={personalInfo.projectsTitle}
+          delay={2900}
+          projects={projects}
+        /> */}
+      </div>
       
       <Footer
         githubUrl={contactInfo.github}

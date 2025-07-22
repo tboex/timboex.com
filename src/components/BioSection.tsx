@@ -125,7 +125,7 @@ const BioSection = forwardRef<BioSectionRef, BioSectionProps>(({
 
   return (
     <section className="text-left mb-16 max-w-2xl">
-      <p className="font-thin text-xl text-gray-50 leading-relaxed m-0 h-16 flex items-center" ref={bioRef}></p>
+      <p className="font-light text-xl text-gray-50 leading-relaxed m-0 h-16 flex items-center" ref={bioRef}></p>
     </section>
   )
 })

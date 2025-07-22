@@ -14,7 +14,7 @@ const Footer: React.FC<FooterProps> = ({
   email = "tim@timboex.com"
 }) => {
   return (
-    <footer className="w-full mt-16 pt-8 pb-8 border-t border-neutral-700">
+    <footer className="w-full pt-8 pb-8 border-t border-neutral-700 bg-neutral-800">
       <div className="flex justify-between items-center max-w-3xl mx-auto px-8">
         {/* Social Links - Left Side */}
         <div className="flex gap-6">
@@ -22,7 +22,7 @@ const Footer: React.FC<FooterProps> = ({
             href={githubUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="text-gray-400 hover:text-gray-200 transition-colors duration-200 font-mono text-sm"
+            className="font-light text-gray-400 hover:text-gray-200 transition-colors duration-200 font-mono text-sm"
           >
             github
           </a>
@@ -30,7 +30,7 @@ const Footer: React.FC<FooterProps> = ({
             href={instagramUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="text-gray-400 hover:text-gray-200 transition-colors duration-200 font-mono text-sm"
+            className="font-light text-gray-400 hover:text-gray-200 transition-colors duration-200 font-mono text-sm"
           >
             instagram
           </a>
@@ -38,7 +38,7 @@ const Footer: React.FC<FooterProps> = ({
             href={linkedinUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="text-gray-400 hover:text-gray-200 transition-colors duration-200 font-mono text-sm"
+            className="font-light text-gray-400 hover:text-gray-200 transition-colors duration-200 font-mono text-sm"
           >
             linkedin
           </a>
@@ -48,7 +48,7 @@ const Footer: React.FC<FooterProps> = ({
         <div>
           <a
             href={`mailto:${email}`}
-            className="text-gray-400 hover:text-gray-200 transition-colors duration-200 font-mono text-sm"
+            className="font-light text-gray-400 hover:text-gray-200 transition-colors duration-200 font-mono text-sm"
           >
             {email}
           </a>

@@ -50,7 +50,7 @@ const AboutSection = forwardRef<AboutSectionRef, AboutSectionProps>(({
 
   return (
     <section className="text-left mb-16 max-w-3xl">
-      <div className="font-thin text-base text-gray-300 leading-relaxed m-0 min-h-12" ref={aboutRef}></div>
+      <div className="font-light text-base text-gray-300 leading-relaxed m-0 min-h-12" ref={aboutRef}></div>
     </section>
   )
 })

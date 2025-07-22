@@ -1,6 +1,14 @@
+@font-face {
+  font-family: 'InputMono';
+  src: url('/fonts/InputMono-Light.ttf') format('truetype');
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+
 html,
 body {
-  font-family: 'Roboto Mono', monospace;
+  font-family: 'InputMono', 'Roboto Mono', monospace;
   background: #212121;
   height: 100%;
 }
@@ -8,4 +16,10 @@ body {
 /* Keep only the essential text scramble styles */
 .dud {
   color: #757575;
+}
+
+.bentham-regular {
+  font-family: "Bentham", serif;
+  font-weight: 400;
+  font-style: normal;
 }
