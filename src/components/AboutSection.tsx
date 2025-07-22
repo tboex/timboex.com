@@ -22,7 +22,7 @@ const AboutSection = forwardRef<AboutSectionRef, AboutSectionProps>(({
   useImperativeHandle(ref, () => ({
     setText: async (newText: string) => {
       if (scrambleRef.current) {
-        return scrambleRef.current.setText(newText)
+        return scrambleRef.current.setText(newText, { speed: 0.5  })
       }
       return Promise.resolve()
     }
@@ -34,8 +34,8 @@ const AboutSection = forwardRef<AboutSectionRef, AboutSectionProps>(({
       
       const timer = setTimeout(async () => {
         if (scrambleRef.current) {
-          await scrambleRef.current.setText(text)
-          setHasInitialized(true) // Mark as initialized after first animation
+          await scrambleRef.current.setText(text, { speed: 0.5  })
+          setHasInitialized(true)
         }
       }, delay)
       
@@ -43,8 +43,6 @@ const AboutSection = forwardRef<AboutSectionRef, AboutSectionProps>(({
     }
   }, [text, delay])
 
-  // Separate effect to handle text changes (like language switching)
-  // Only runs after initial animation has completed
   useEffect(() => {
     if (scrambleRef.current && text && hasInitialized) {
       scrambleRef.current.setText(text)

@@ -73,13 +73,13 @@ function App() {
           text={aboutText}
           delay={4100}
         />
-        
+        {/* idk if I want projects... */}
         {/* <ProjectsSection 
           ref={projectsRef}
           titleText={personalInfo.projectsTitle}
           delay={2900}
           projects={projects}
-        /> */}
+        /> */} 
       </div>
       
       <Footer
