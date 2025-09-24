@@ -1,4 +1,4 @@
-import { useRef, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import './App.css'
 import NameSection from './components/NameSection'
 import BioSection from './components/BioSection'
@@ -9,6 +9,7 @@ import { getContent, type Language } from './content'
 import type { NameSectionRef } from './components/NameSection'
 import type { BioSectionRef } from './components/BioSection'
 import type { AboutSectionRef } from './components/AboutSection'
+import PortfolioSection from './components/PortfolioSection'
 
 function App() {
   const nameRef = useRef<NameSectionRef>(null)
@@ -45,6 +46,16 @@ function App() {
     }
   ]
 
+  const [showPortfolio, setShowPortfolio] = useState(false)
+
+  useEffect(() => {
+    if (showPortfolio) {
+      window.history.replaceState(null, '', '/portfolio')
+    } else {
+      window.history.replaceState(null, '', '/')
+    }
+  }, [showPortfolio])
+
   return (
     <div className="min-h-screen w-full flex flex-col bg-neutral-800 font-input">
       <div className="flex-1 flex flex-col justify-start items-start p-8 max-w-3xl mx-auto w-full">
@@ -54,32 +65,38 @@ function App() {
           delay={2800}
         />
         
-        <NameSection 
-          ref={nameRef}
-          initialText={personalInfo.name}
-          delay={500}
-        />
-        
-        <BioSection 
-          ref={bioRef}
-          firstPhrases={firstPhrases}
-          secondPhrases={secondPhrases}
-          delay={2000}
-          rotationInterval={4000}
-        />
-        
-        <AboutSection 
-          ref={aboutRef}
-          text={aboutText}
-          delay={4100}
-        />
-        {/* idk if I want projects... */}
-        {/* <ProjectsSection 
-          ref={projectsRef}
-          titleText={personalInfo.projectsTitle}
-          delay={2900}
-          projects={projects}
-        /> */} 
+        {showPortfolio ? (
+          <div className="w-full">
+            <PortfolioSection language={language} />
+            <button
+              className="mt-8 px-4 py-2 bg-neutral-700 text-gray-200 rounded hover:bg-neutral-600 font-mono text-sm"
+              onClick={() => setShowPortfolio(false)}
+            >
+              ← Back to About
+            </button>
+          </div>
+        ) : (
+          <>
+            <NameSection 
+              ref={nameRef}
+              initialText={personalInfo.name}
+              delay={500}
+            />
+            
+            <BioSection 
+              ref={bioRef}
+              firstPhrases={firstPhrases}
+              secondPhrases={secondPhrases}
+              delay={2000}
+              rotationInterval={4000}
+            />
+            <AboutSection 
+              ref={aboutRef}
+              text={aboutText}
+              delay={4100}
+            />
+          </>
+        )}
       </div>
       
       <Footer
@@ -87,6 +104,7 @@ function App() {
         instagramUrl={contactInfo.instagram}
         linkedinUrl={contactInfo.linkedin}
         email={contactInfo.email}
+        onShowPortfolio={() => setShowPortfolio(true)}
       />
     </div>
   )

@@ -13,7 +13,6 @@ export const bioConfig = {
     "high performance microservice maker",
     "두부 먹는 사람",
     "problem solver",
-    "rubber duck",
     "api architect",
     "performance optimizer",
     "system architect",

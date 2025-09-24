@@ -7,11 +7,12 @@ interface FooterProps {
   email?: string
 }
 
-const Footer: React.FC<FooterProps> = ({
+const Footer: React.FC<FooterProps & { onShowPortfolio?: () => void }> = ({
   githubUrl = "https://github.com/tboex",
   instagramUrl = "https://instagram.com/timboex",
   linkedinUrl = "https://linkedin.com/in/timboex",
-  email = "tim@timboex.com"
+  email = "tim@timboex.com",
+  onShowPortfolio
 }) => {
   return (
     <footer className="w-full pt-8 pb-8 border-t border-neutral-700 bg-neutral-800">
@@ -41,6 +42,18 @@ const Footer: React.FC<FooterProps> = ({
             className="font-light text-gray-400 hover:text-gray-200 transition-colors duration-200 font-mono text-sm"
           >
             linkedin
+          </a>
+          <a
+            href="#"
+            onClick={e => {
+              e.preventDefault();
+              if (onShowPortfolio) {
+                onShowPortfolio();
+              }
+            }}
+            className="font-light text-gray-400 hover:text-gray-200 transition-colors duration-200 font-mono text-sm"
+          >
+            portfolio
           </a>
         </div>
 

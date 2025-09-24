@@ -24,7 +24,6 @@ const BioSection = forwardRef<BioSectionRef, BioSectionProps>(({
     "high performance microservice maker",
     "두부 먹는 사람",
     "problem solver",
-    "rubber duck",
     "api architect",
     "performance optimizer",
     "spokesperson for code quality",
@@ -98,16 +97,15 @@ const BioSection = forwardRef<BioSectionRef, BioSectionProps>(({
       
       const timer = setTimeout(async () => {
         if (scrambleRef.current) {
-          // Start with random phrases
+
           const firstPhrase = getRandomPhrase(firstPhrases)
           const secondPhrase = getRandomPhrase(secondPhrases)
           const initialDisplayText = `${firstPhrase} ${secondPhrase}`
           await scrambleRef.current.setText(initialDisplayText)
           
-          // Start rotation after initial text is displayed
           setTimeout(() => {
             startRotation()
-          }, 2000) // Wait 2 seconds before starting rotation
+          }, 2000)
         }
       }, delay)
       
@@ -118,7 +116,6 @@ const BioSection = forwardRef<BioSectionRef, BioSectionProps>(({
     }
   }, [initialText, delay, firstPhrases, secondPhrases])
 
-  // Cleanup on unmount
   useEffect(() => {
     return () => stopRotation()
   }, [])
